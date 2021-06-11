@@ -46,7 +46,7 @@ const Login = ({navigation}) => {
         dispatchLoaderAction({
           type:LOADING_STOP,
         });
-        navigation.replace('Dashboard');
+        navigation.replace('HomeTabs');
       })
       .catch((err)=>{
         dispatchLoaderAction({
@@ -117,8 +117,18 @@ const handleFocus = () => {
           fontWeight:'bold',
           color:color.LIGHT_GREEN
         }}
+
         onPress = {()=>navigation.navigate('SignUp')}>
-          Sign Up
+          Sign Up as Student
+        </Text>
+        <Text
+        style={{
+          fontSize:28,
+          fontWeight:'bold',
+          color:color.LIGHT_GREEN
+        }}
+        onPress = {()=>navigation.navigate('SignUpProf')}>
+          Sign Up as Faculty
         </Text>
       </View>
   </SafeAreaView>

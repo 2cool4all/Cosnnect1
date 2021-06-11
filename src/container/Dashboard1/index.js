@@ -17,8 +17,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { Body, Header, Left, Right } from 'native-base';
 
-
-const Dashboard = ({navigation}) => {
+const Dashboard1 = ({navigation}) => {
   const globalState = useContext(Store);
   const {dispatchLoaderAction} = globalState;
   const [getScrollPosition, setScrollPosition] = useState(0);
@@ -39,30 +38,30 @@ useEffect(()=>{
   try{
     firebase
     .database()
-    .ref('users')
+    .ref('professors')
     .on('value', (dataSnapshot)=>{
-      let users = [];
-      let currentUser = {
+      let faculty = [];
+      let currentFac = {
         id: '',
         name: '',
         profileImg: ''
       };
       dataSnapshot.forEach((child)=>{
         if(uuid === child.val().uuid){
-          currentUser.id = uuid;
-          currentUser.name = child.val().name;
-          currentUser.profileImg=child.val().profileImg;
+          currentFac.id = uuid;
+          currentFac.name = child.val().name;
+          currentFac.profileImg=child.val().profileImg;
         }
         else{
-          users.push({
+          faculty.push({
             id: child.val().uuid,
             name: child.val().name,
             profileImg: child.val().profileImg,
           });
         }
       });
-      setUserDetail(currentUser)
-      setAllUsers(users);
+      setUserDetail(currentFac)
+      setAllUsers(faculty);
       dispatchLoaderAction({
         type: LOADING_STOP,
       });
@@ -153,14 +152,14 @@ const nameTap = (profileImg, name, guestUserId) => {
       name,
       imgText : name.charAt(0),
       guestUserId,
-      currentUserId : uuid
+      currentFacId : uuid
     })
   }else{
     navigation.navigate('Chat', {
       name,
       img: profileImg,
       guestUserId,
-      currentUserId : uuid
+      currentFacId : uuid
     })
   }
 }
@@ -201,7 +200,7 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <Header backgroundColor={color.DARK_GRAY}>
+        <Header backgroundColor={color.BLACK}>
         <Left><Text style={{color: color.WHITE}}>Tite</Text></Left>
         <Body><Text style={{color: color.WHITE}}>Tite</Text></Body>
         <Right><Text style={{color: color.WHITE}} onPress={()=>Alert.alert(
@@ -243,4 +242,4 @@ const getOpacity = () =>{
   ) 
 };
 
-export default Dashboard;
+export default Dashboard1;

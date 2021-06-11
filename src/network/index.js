@@ -3,6 +3,10 @@ import LogOutUser from './logout';
 import SignUpRequest from './signup';
 import {AddUser, UpdateUser} from './user';
 import {senderMsg, recieverMsg} from './messages';
+import showNotification from './notification';
+import { AddProf } from './professor';
+
+
 
 export {
     LoginRequest,
@@ -12,4 +16,6 @@ export {
     UpdateUser,
     senderMsg, 
     recieverMsg,
+    showNotification,
+    AddProf
 };

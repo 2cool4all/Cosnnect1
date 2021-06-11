@@ -4,12 +4,13 @@ import {color, globalStyle} from '../../utility';
 import {Logo, InputField, RoundCornerButton} from '../../component';
 import { Store } from '../../context/store';
 import { LOADING_START, LOADING_STOP } from '../../context/actions/type';
-import { AddUser, SignUpRequest } from '../../network';
+import { AddProf, SignUpRequest } from '../../network';
 import {setAsyncStorage, keys} from '../../asyncStorage';
 import { setUniqueValue, keyboardVerticalOffset} from '../../utility/constants';
 import firebase from '../../firebase/config';
 
-const SignUp = ({navigation}) => {
+
+const SignUpProf = ({navigation}) => {
 
   const globalState = useContext(Store);
   const {dispatchLoaderAction} = globalState;
@@ -17,13 +18,13 @@ const SignUp = ({navigation}) => {
   const [credentials, setCredentials]= useState({
       name: "",
       email: "",
-      course: "",
+      department: "",
       password:"",
       confirmPassword: "",
 
   });
 
-  const {name, email, course,  password, confirmPassword} = credentials;
+  const {name, email, department,  password, confirmPassword} = credentials;
 
 
   const onSignUpPress = () =>{
@@ -31,8 +32,8 @@ const SignUp = ({navigation}) => {
       alert("Name is required");
     }else if(!email){
       alert('Email is required');
-    }else if(!course){
-      alert('Course is required')
+    }else if(!department){
+      alert('Department is required')
     }else if(!password){
       alert('Password is required');
     }else if(password !== confirmPassword){
@@ -53,7 +54,7 @@ const SignUp = ({navigation}) => {
         }
         let uid = firebase.auth().currentUser.uid;
         let profileImg = "";
-          AddUser(name, email, course, uid, profileImg)
+          AddProf(name, email, department, uid, profileImg)
             .then(() => {
               setAsyncStorage(keys.uuid, uid);
               setUniqueValue(uid);
@@ -61,7 +62,7 @@ const SignUp = ({navigation}) => {
                 type: LOADING_STOP,
               });
               alert('Done')
-              navigation.replace("HomeTabs");
+              navigation.replace("Dashboard");
             })
             .catch((err) => {
               dispatchLoaderAction({
@@ -131,8 +132,8 @@ const handleBlur = () => {
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
-        <InputField placeholder="Enter course" value={course}
-        onChangeText={(text)=>handleOnChange('course',text)}
+        <InputField placeholder="Enter department" value={department}
+        onChangeText={(text)=>handleOnChange('department',text)}
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
@@ -166,4 +167,4 @@ const handleBlur = () => {
   );
 };
 
-export default SignUp;
+export default SignUpProf;

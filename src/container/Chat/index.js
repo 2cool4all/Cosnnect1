@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import firebase from '../../firebase/config';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { recieverMsg, senderMsg } from '../../network';
+import { recieverMsg, senderMsg, showNotification } from '../../network';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { smallDeviceHeight } from '../../utility/constants';
 
@@ -55,12 +55,16 @@ const Chat = ({route, navigation}) => {
         setMsgValue('');
         if(msgValue){
             senderMsg(msgValue, currentUserId, guestUserId, '')
-            .then(()=>{})
+            .then(()=>{
+                showNotification('New Message', msgValue);
+            })
             .catch((err)=>alert(err));
 
 
             recieverMsg(msgValue, currentUserId, guestUserId, '')
-            .then(()=>{})
+            .then(()=>{
+                showNotification('New Message', msgValue);
+            })
             .catch((err)=>alert(err));
         }
 

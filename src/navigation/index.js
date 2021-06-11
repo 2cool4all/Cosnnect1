@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {Assets, createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Login, SignUp, Dashboard, Splash, ShowFullImg, Chat} from '../container';
+import {Login, SignUp, Dashboard, Splash, ShowFullImg, Chat, Tabs} from '../container';
 import { color } from '../utility';
+import SignUpProf from '../container/SignUpProf';
+import HomeTabs from '../container/HomeTabs';
 
 
 const Stack = createStackNavigator();
@@ -27,7 +29,7 @@ function NavContainer(){
                 component={Splash}
                 options={{headerShown: false}}
                 />
-
+                
                 <Stack.Screen 
                 name="Login" 
                 component={Login}
@@ -39,11 +41,15 @@ function NavContainer(){
                 options={{headerShown: false}}
                 />
                 <Stack.Screen 
-                name="Dashboard" 
-                component={Dashboard}
-                options={{
-                    headerLeft: null,
-                }}
+                name="SignUpProf" 
+                component={SignUpProf}
+                options={{headerShown: false}}
+                />
+                <Stack.Screen 
+                name="HomeTabs" 
+                component={HomeTabs}
+                options={{headerShown: false}}
+                
                 />
                 <Stack.Screen 
                 name="ShowFullImg" 
