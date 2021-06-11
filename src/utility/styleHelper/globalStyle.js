@@ -19,7 +19,7 @@
      flex: 1,
    },
    sectionCentered: { justifyContent: 'center', alignItems: 'center' },
- 
+   sectionCenteredLog: { justifyContent: 'center' },
    /* Aligning items */
    rightAligned: { alignItems: 'flex-end' },
    leftAligned: { alignItems: 'flex-start' },
@@ -146,6 +146,7 @@
    m_t_25: { marginTop: 25 },
    m_t_30: { marginTop: 30 },
    m_t_40: { marginTop: 40 },
+   m_t_100: { marginTop: 100 },
  
    m_e_5: { marginEnd: 5 },
    m_e_10: { marginEnd: 10 },
