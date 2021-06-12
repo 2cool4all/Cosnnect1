@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {Text, SafeAreaView, ImageBackground, View, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard, Picker } from 'react-native';
+import {Text, SafeAreaView, ImageBackground, View, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard} from 'react-native';
 import {color, globalStyle} from '../../utility';
 import { Verification, InputField, ButtonLaunchHollow, VerifyButton} from '../../component';
 import { Store } from '../../context/store';
@@ -12,7 +12,7 @@ import { TRANSPARENT } from '../../utility/colors';
 import { ListItem, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {Picker} from '@react-native-picker/picker';
 
 const SignUp = ({navigation}) => {
 
@@ -38,8 +38,6 @@ const SignUp = ({navigation}) => {
       alert("Name is required");
     }else if(!email){
       alert('Email is required');
-    }else if(!course){
-      alert('Course is required')
     }else if(!password){
       alert('Password is required');
     }else if(password !== confirmPassword){
@@ -171,24 +169,24 @@ const handleBlur = () => {
         <CheckBox checked={false} color="green"  style={{marginLeft:70}} /><Text style={{color:'#320202'}}>  Faculty</Text>
         </ListItem>
 
-        <ListItem style={{marginTop:20, marginLeft:25}}>
+        <ListItem style={{marginTop:20, marginLeft:28}}>
         <Text style={{fontSize:16, color:'#320202'}}>Course</Text>
-        <Text style={{marginLeft:88, fontSize:16, color:'#320202'}}>Year</Text>
+        <Text style={{marginLeft:75, fontSize:16, color:'#320202'}}>Year</Text>
         <Text style={{marginLeft:88, fontSize:16, color:'#320202'}}>Section</Text>
         </ListItem>
         <ListItem>
-        <Picker style={{height: 30, width:120, marginLeft:1, padding:1}}>
+        <Picker style={{height: 30, width:115,padding:1}}>
           <Picker.Item label="BSCS" value="bscs"/>
           <Picker.Item label="BSIS" value="bsis"/>
           <Picker.Item label="BSIT" value="bsit"/>
         </Picker>
-        <Picker style={{height: 30,width:95, marginLeft:20, padding:1}}>
+        <Picker style={{height: 30,width:120, marginLeft:8, padding:1}}>
           <Picker.Item label="First" value="first"/>
           <Picker.Item label="Second" value="second"/>
           <Picker.Item label="Third" value="third"/>
           <Picker.Item label="Fourth" value="fourth"/>
         </Picker>
-        <Picker style={{height: 30,width:75, marginLeft:25}}>
+        <Picker style={{height: 30,width:91, marginLeft:5}}>
           <Picker.Item label="A" value="a"/>
           <Picker.Item label="B" value="b"/>
           <Picker.Item label="C" value="c"/>
