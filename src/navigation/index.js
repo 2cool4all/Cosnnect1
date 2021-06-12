@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Assets, createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import { Login, SignUp, Dashboard, Splash, ShowFullImg, Chat, Tabs} from '../container';
+import { Login, SignUp, ProfileScreen, Dashboard, Splash, ShowFullImg, Chat, Tabs} from '../container';
 import { color } from '../utility';
 import Launch from '../container/Launch';
 import SignUpProf from '../container/SignUpProf';
@@ -55,7 +55,11 @@ function NavContainer(){
                 name="HomeTabs" 
                 component={HomeTabs}
                 options={{headerShown: false}}
-                
+                />
+                <Stack.Screen 
+                name="Account Settings" 
+                component={ProfileScreen}
+                options={{headerShown: true}}
                 />
                 <Stack.Screen 
                 name="ShowFullImg" 

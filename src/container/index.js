@@ -5,5 +5,6 @@ import Splash from './Splash';
 import ShowFullImg from './ShowFullImg';
 import Chat from './Chat';
 import Dashboard1 from './Dashboard1';
+import ProfileScreen from './ProfileScreen';
 
-export {Login, SignUp, Dashboard, Splash, ShowFullImg, Chat, Dashboard1};
+export {Login, SignUp, ProfileScreen, Dashboard, Splash, ShowFullImg, Chat, Dashboard1};
