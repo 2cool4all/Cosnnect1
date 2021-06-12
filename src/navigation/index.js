@@ -5,7 +5,6 @@ import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword
 import { color } from '../utility';
 import Launch from '../container/Launch';
 import SignUpProf from '../container/SignUpProf';
-import HomeTabs from '../container/HomeTabs';
 
 const Stack = createStackNavigator();
 
@@ -52,19 +51,14 @@ function NavContainer(){
                 options={{headerShown: false}}
                 />
                 <Stack.Screen 
-                name="SignUpProf" 
-                component={SignUpProf}
-                options={{headerShown: false}}
-                />
-                <Stack.Screen 
-                name="HomeTabs" 
-                component={HomeTabs}
+                name="Dashboard" 
+                component={Dashboard}
                 options={{headerShown: false}}
                 />
                 <Stack.Screen 
                 name="Account Settings" 
                 component={ProfileScreen}
-                options={{headerShown: true}}
+                options={{headerShown: false}}
                 />
                 <Stack.Screen 
                 name="ShowFullImg" 

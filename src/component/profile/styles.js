@@ -53,7 +53,6 @@ const getDimensions = (key) => {
           height: 40,
           width: 40,
           borderRadius: 20,
-          backgroundColor: color.SEMI_TRANSPARENT,
           position: "absolute",
           right: 10,
           bottom: 10,
@@ -73,7 +72,7 @@ export default StyleSheet.create({
   img: getDimensions("img"),
   editImgContainer: getDimensions("editImgContainer"),
   name: {
-    color: color.WHITE,
+    color: '#960A00',
     fontSize: 30,
     fontWeight: "bold",
   },

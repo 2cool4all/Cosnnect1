@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLayoutEffect } from 'react';
-import { View, SafeAreaView, Alert, FlatList, Text} from 'react-native';
+import { View, SafeAreaView, Alert, FlatList, Text, ImageBackground} from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import firebase from "../../firebase/config";
 import { LOADING_STOP, LOADING_START } from "../../context/actions/type";
 import { clearAsyncStorage } from '../../asyncStorage';
 import { uuid, smallDeviceHeight } from "../../utility/constants";
 import { LogOutUser, UpdateUser } from '../../network';
-import { Profile, ShowUsers, StickyHeader } from "../../component";
+import { Avatar, ShowUsers, StickyHeader } from "../../component";
 import { color, globalStyle } from '../../utility';
 import { useContext } from 'react';
 import { Store } from '../../context/store';
@@ -18,6 +18,9 @@ import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { Body, Header, Left, Right } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Dashboard from '../Dashboard';
+import { ListItem, CheckBox } from 'native-base';
+import { TRANSPARENT } from '../../utility/colors';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const ProfileScreen = ({navigation}) => {
@@ -179,7 +182,64 @@ const getOpacity = () =>{
 }
 
   return(
-  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
+    <ImageBackground
+    source={require("./profile.png")}
+    style={{height: null,
+      resizeMode: "cover",
+      overflow: "hidden",
+      flex: 1}}>
+  
+    <View style={{justifyContent:'center', marginBottom:10}}>
+    <ListItem style={{backgroundColor:TRANSPARENT}}>
+    <Icon name="long-arrow-left" size={30} color="white" onPress={()=>navigation.navigate('Dashboard')}/>
+    <Text style={{marginLeft:20, color: color.WHITE, fontWeight:'bold', fontSize:20}}> Account Settings</Text>
+    </ListItem>
+    </View>
+    <Avatar
+        img={profileImg}
+        name={name}
+        onEditImgTap={()=>selectPhotoTapped()}
+        onImgTap={()=>imgTap(profileImg, name)}/>
+    
+    <View style={{ justifyContent:'center', marginTop:25, height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
+    <ListItem>
+        <Text style={{ color: '#192a56', fontSize: 25 }}>
+        <Icon name="user" size={35} color='#440500'/>   {name}</Text>
+      <View style={{marginLeft:123, marginTop:10}}>
+        <Icon name="chevron-right" size={30} color='#440500'/>
+        </View>
+      </ListItem>
+    </View>
+    <View style={{ justifyContent:'center', height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
+    <ListItem>
+        <Text style={{ color: '#192a56', fontSize: 22 }}>
+        <Icon name="inbox" size={35} color='#440500'/>  padisplay email dito</Text>
+      </ListItem>
+    </View>
+    <View style={{ justifyContent:'center', height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
+    <ListItem>
+        <Text style={{ color: '#192a56', fontSize: 23 }}>
+        Change Password</Text>
+        <View style={{marginLeft:148, marginTop:10}}>
+        <Icon name="chevron-right" size={30} color='#440500'/>
+        </View>
+      </ListItem>
+    </View >
+    <TouchableOpacity onPress={()=>Alert.alert(
+          "Logout", "Are you sure you want to logout?",[
+            {text: 'Cancel',},
+            {text: 'Confirm',onPress:()=> logout()},],
+          {cancelable:false,},
+        )}>
+    <View style={{ justifyContent:'center', height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
+    <ListItem>
+        <Icon name="sign-out" size={35} color='#440500'/>
+        <Text style={{ color: '#192a56', fontSize: 22, marginLeft:85 }}>   LOGOUT</Text>
+      </ListItem>
+    </View>
+    </TouchableOpacity>        
+  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK,opacity:0}]}/>
+    
       {
         getScrollPosition > getOpacity() && (
           <StickyHeader
@@ -189,11 +249,9 @@ const getOpacity = () =>{
           />
         )
       }
-
+      
       <FlatList
       alwaysBounceVertical={false}
-      data={allUsers}
-      keyExtractor={(_,index)=>index.toString()}
       onScroll={(event)=>setScrollPosition(event.nativeEvent.contentOffset.y)}
       ListHeaderComponent={
         <View
@@ -203,10 +261,8 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <Header backgroundColor={'#B2352C'} style={{height:80, alignItems:'center'}}>
-        <Icon name="long-arrow-left" size={30} color="white" style={{marginLeft:5, marginTop:10}} onPress={()=>navigation.navigate('HomeTabs')}/>
-        <Body><Text style={{color: color.WHITE}}></Text></Body>
-        <Right><Text style={{color: color.WHITE}} onPress={()=>Alert.alert(
+       
+       <Text style={{color: color.WHITE}} onPress={()=>Alert.alert(
           "Logout", "Are you sure you want to logout?",[
             {
               text: 'Yes',
@@ -219,28 +275,14 @@ const getOpacity = () =>{
           {
             cancelable:false,
           },
-        )}>Logout</Text></Right>
+        )}>Logout</Text>
 
-        </Header>
-        <Profile
-        img={profileImg}
-        name={name}
-        onEditImgTap={()=>selectPhotoTapped()}
-        onImgTap={()=>imgTap(profileImg, name)}
-        />
+        
         </View>
-      }
-      renderItem={({item})=>(
-        <ShowUsers
-           name={item.name} img={item.profileImg}
-           onImgTap={()=>imgTap(item.profileImg, item.name)}
-           onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
-           />
-
-      )}
+      }/>
       
-      />
-  </SafeAreaView>
+      <SafeAreaView style={{opacity:0}}/>
+  </ImageBackground> 
 
   ) 
 };
