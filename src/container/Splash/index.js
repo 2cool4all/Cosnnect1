@@ -15,19 +15,19 @@ const Splash = ({navigation}) => {
                     setUniqueValue(uuid);
                     navigation.replace('HomeTabs');
                 }else{
-                    navigation.replace('Login');
+                    navigation.replace('Launch');
                 }
             })
             .catch((err)=>{
                 console.log(err);
-                navigation.replace('Login');
+                navigation.replace('Launch');
             });
         }, 3000);
         return () => clearTimeout(redirect);
     }, [navigation])
     return(
         <View 
-        style = {[globalStyle.containerCentered, {backgroundColor: color.BLACK}]}>
+        style = {[globalStyle.containerCentered, {backgroundColor: color.WHITE}]}>
         <Logo/>
         </View>
     );

@@ -1,9 +1,20 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import styles from './styles';
+import {Text, View, Image, StyleSheet} from 'react-native';
 
-export default ({logoStyle, logoTextStyle}) => (
-  <View style={[styles.logo, logoStyle]}>
-    <Text style={[styles.text, logoTextStyle]}>C</Text>
+export default () => (
+  <View>
+    <Image
+          source={require("./logo.png")}
+          style={ styles.image }
+        />
   </View>
 );
+
+const styles = StyleSheet.create({
+image: {
+  flex:1,
+    width: 500,
+    height: 500,
+    alignSelf: 'center'
+},
+});

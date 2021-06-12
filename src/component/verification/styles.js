@@ -4,16 +4,15 @@ import { TRANSPARENT } from "../../utility/colors";
 
 export default StyleSheet.create({
   input: {
-    paddingLeft: 20,
     backgroundColor: TRANSPARENT,
     borderColor: '#B2352C',
     borderWidth:2,
     borderRadius:15,
-    width: "85%",
+    width: "30%",
     color: appStyle.fieldTextColor2,
     height: appStyle.fieldHeight,
-    alignSelf: "center",
+    textAlign: "center",
     marginVertical: appStyle.fieldMarginVertical,
-    fontSize: 18,
+    fontSize: 15,
   },
 });

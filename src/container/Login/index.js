@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import {Text, SafeAreaView, View, Alert, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard} from 'react-native';
+import {Text, SafeAreaView, ImageBackground,  View, Alert, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard} from 'react-native';
 import {color, globalStyle} from '../../utility';
-import {Logo, InputField, RoundCornerButton} from '../../component';
+import {Logo, InputField, ButtonLaunch } from '../../component';
 import { useState } from 'react';
 import { Store } from '../../context/store';
 import { LOADING_START, LOADING_STOP } from '../../context/actions/type';
@@ -81,57 +81,47 @@ const handleFocus = () => {
 
   return(
   <KeyboardAvoidingView
-  style={[globalStyle.flex1,{backgroundColor: color.BLACK}]}
+  style={[globalStyle.flex1,{backgroundColor: color.WHITE}]}
   behavior={Platform.OS==='ios'?'padding':'height'}
   keyboardVerticalOffset={keyboardVerticalOffset}>
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
-    
+  <ImageBackground
+    source={require("./avatar.png")}
+    style={{height: null,
+      resizeMode: "cover",
+      overflow: "hidden",
+      flex: 1}}>
+  <SafeAreaView style={[globalStyle.flex1,{backgroundColor: color.WHITE, opacity:0}]}/>
   
-  <SafeAreaView style={[globalStyle.flex1,{backgroundColor: color.BLACK}]}>
-      
-      {
-        showLogo && (
-        <View style={[globalStyle.containerCentered]}>
-        <Logo/>
-      </View>
-        )}
-      
-      
-      
-      <View style={[globalStyle.flex2, globalStyle.sectionCentered]}>
-        <InputField placeholder="Enter email" value={email}
+      <View style={[globalStyle.flex2, globalStyle.sectionCenteredLog]}>
+      <Text style={{marginLeft:25, fontSize:18, color:'#320202'}} >USERNAME</Text>
+        <InputField value={email}
         onChangeText={(text)=>handleOnChange('email',text)}
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
-        <InputField placeholder="Enter password" secureTextEntry={true}
+        <Text style={{ marginLeft:25, fontSize:18, color:'#320202'}} >PASSWORD</Text>
+        <InputField secureTextEntry={true}
         value={password} onChangeText={(text)=>handleOnChange('password',text)}
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
-        <RoundCornerButton title="Login" onPress={()=>onLoginPress()}/>
+        <Text style={{ marginBottom:50,marginRight:30, alignSelf:"flex-end", fontSize:15, color:'#320202'}} >Forgot Password?</Text>
+        <View style={[globalStyle.sectionCentered]}>
+        <ButtonLaunch title="Login" onPress={()=>navigation.navigate('Login')}/>
+        <Text style={{ fontSize:15, color:'#320202'}}>Don't have an account?
         <Text
         style={{
-          fontSize:28,
-          fontWeight:'bold',
-          color:color.LIGHT_GREEN
+          fontSize:15,
+          color:'green'
         }}
-
-        onPress = {()=>navigation.navigate('SignUp')}>
-          Sign Up as Student
+        onPress = {()=>navigation.navigate('SignUp')}> Create one.
         </Text>
-        <Text
-        style={{
-          fontSize:28,
-          fontWeight:'bold',
-          color:color.LIGHT_GREEN
-        }}
-        onPress = {()=>navigation.navigate('SignUpProf')}>
-          Sign Up as Faculty
         </Text>
+        </View>
       </View>
-  </SafeAreaView>
+  <SafeAreaView style={{opacity:0}}/>
+  </ImageBackground>
   </TouchableWithoutFeedback>
   </KeyboardAvoidingView>
 
