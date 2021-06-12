@@ -11,8 +11,11 @@ import ButtonLaunch from "./button/ButtonLaunch";
 import ButtonLaunchHollow from "./button/ButtonLaunchHollow";
 import Verification from "./verification";
 import VerifyButton from "./button/VerifyButton";
+import Tab from './button/Tab';
+import Avatar from "./image";
 
 export {
+  Avatar,
   VerifyButton,
   ButtonLaunch,
   ButtonLaunchHollow,
@@ -26,4 +29,5 @@ export {
   StickyHeader,
   ChatBox,
   FieldInput,
+  Tab,
 };

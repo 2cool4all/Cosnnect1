@@ -16,16 +16,14 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
             style={[
               globalStyle.sectionCentered,
               styles.img,
-              { backgroundColor: '#B2352C' },
+              { backgroundColor: color.WHITE},
             ]}
           >
             <Text style={styles.name}>{name.charAt(0)}</Text>
           </View>
         )}
       </TouchableOpacity>
-      <View style={[globalStyle.sectionCentered]}>
-        
-      </View>
+      
     </View>
   </View>
 );

@@ -66,7 +66,7 @@ const SignUp = ({navigation}) => {
                 type: LOADING_STOP,
               });
               alert('Done')
-              navigation.replace("HomeTabs");
+              navigation.replace("Dashboard");
             })
             .catch((err) => {
               dispatchLoaderAction({
