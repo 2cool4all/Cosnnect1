@@ -46,7 +46,7 @@ const Login = ({navigation}) => {
         dispatchLoaderAction({
           type:LOADING_STOP,
         });
-        navigation.replace('HomeTabs');
+        navigation.replace('Dashboard');
       })
       .catch((err)=>{
         dispatchLoaderAction({

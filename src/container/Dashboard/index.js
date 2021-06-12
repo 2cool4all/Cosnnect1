@@ -18,6 +18,7 @@ import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { Body, Header, Left, Right } from 'native-base';
 import { ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Tab } from '../../component';
 
 const Dashboard = ({navigation}) => {
   const globalState = useContext(Store);
@@ -178,7 +179,7 @@ const getOpacity = () =>{
 }
 
   return(
-  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
+  <SafeAreaView style={{flexDirection:'column', backgroundColor:color.WHITE}}>
       {
         getScrollPosition > getOpacity() && (
           <StickyHeader
@@ -191,7 +192,6 @@ const getOpacity = () =>{
 
       <FlatList
       alwaysBounceVertical={false}
-      data={allUsers}
       keyExtractor={(_,index)=>index.toString()}
       onScroll={(event)=>setScrollPosition(event.nativeEvent.contentOffset.y)}
       ListHeaderComponent={
@@ -202,35 +202,29 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <View style={{flex:1, height:80, width:'100%', backgroundColor:'#B2352C', justifyContent:'center'}}>
+        <View style={{height:85, width:'100%', backgroundColor:'#960A00', justifyContent:'center'}}>
           <ListItem>
-            <Text style={{color: color.WHITE, fontSize:20,marginBottom:5, fontWeight:"bold", marginRight:58}}>COSnnect</Text>
+            <Text style={{color: color.WHITE, fontSize:18,marginBottom:5, fontWeight:"bold", marginRight:67}}>COSnnect</Text>
             <Profile 
             img={profileImg}
             name={name}
             onEditImgTap={()=>selectPhotoTapped()}
           onImgTap={()=>navigation.navigate('Account Settings')}/>
-          <Icon name="search" size={20} style={{color: color.WHITE, marginLeft:125}} onPress={()=>navigation.navigate('Account Settings')}/>   
-    
+          <Icon name="search" size={25} style={{color: color.WHITE, marginLeft:125}} onPress={()=>navigation.navigate('Account Settings')}/>   
           </ListItem>
-
+        </View>
+        <View style={{height:50, backgroundColor:color.WHITE, justifyContent:'center'}}>
+        <ListItem>
+        <Tab title="Message"/>
+        <Tab title="Group Chat"/>
+        </ListItem>
         </View>
 
-        
-        </View>
-      }
-      renderItem={({item})=>(
-        <ShowUsers
-           name={item.name} img={item.profileImg}
-           onImgTap={()=>navigation.navigate('Account Settings')}
-           onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
-           />
 
-      )}
-      
+        </View>
+      }  
       />
   </SafeAreaView>
-
   ) 
 };
 
