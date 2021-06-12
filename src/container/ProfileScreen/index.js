@@ -16,10 +16,11 @@ import { useEffect } from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { Body, Header, Left, Right } from 'native-base';
-import { ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Dashboard from '../Dashboard';
 
-const Dashboard = ({navigation}) => {
+
+const ProfileScreen = ({navigation}) => {
   const globalState = useContext(Store);
   const {dispatchLoaderAction} = globalState;
   const [getScrollPosition, setScrollPosition] = useState(0);
@@ -184,7 +185,7 @@ const getOpacity = () =>{
           <StickyHeader
           name= {name}
           img={profileImg}
-          onImgTap={()=>navigation.navigate('Account Settings')}
+          onImgTap={()=>imgTap(profileImg, name)}
           />
         )
       }
@@ -202,27 +203,37 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <View style={{flex:1, height:80, width:'100%', backgroundColor:'#B2352C', justifyContent:'center'}}>
-          <ListItem>
-            <Text style={{color: color.WHITE, fontSize:20,marginBottom:5, fontWeight:"bold", marginRight:58}}>COSnnect</Text>
-            <Profile 
-            img={profileImg}
-            name={name}
-            onEditImgTap={()=>selectPhotoTapped()}
-          onImgTap={()=>navigation.navigate('Account Settings')}/>
-          <Icon name="search" size={20} style={{color: color.WHITE, marginLeft:125}} onPress={()=>navigation.navigate('Account Settings')}/>   
-    
-          </ListItem>
+        <Header backgroundColor={'#B2352C'} style={{height:80, alignItems:'center'}}>
+        <Icon name="long-arrow-left" size={30} color="white" style={{marginLeft:5, marginTop:10}} onPress={()=>navigation.navigate('HomeTabs')}/>
+        <Body><Text style={{color: color.WHITE}}></Text></Body>
+        <Right><Text style={{color: color.WHITE}} onPress={()=>Alert.alert(
+          "Logout", "Are you sure you want to logout?",[
+            {
+              text: 'Yes',
+              onPress:()=> logout(), 
+            },
+            {
+              text: 'No'
+            },
+          ],
+          {
+            cancelable:false,
+          },
+        )}>Logout</Text></Right>
 
-        </View>
-
-        
+        </Header>
+        <Profile
+        img={profileImg}
+        name={name}
+        onEditImgTap={()=>selectPhotoTapped()}
+        onImgTap={()=>imgTap(profileImg, name)}
+        />
         </View>
       }
       renderItem={({item})=>(
         <ShowUsers
            name={item.name} img={item.profileImg}
-           onImgTap={()=>navigation.navigate('Account Settings')}
+           onImgTap={()=>imgTap(item.profileImg, item.name)}
            onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
            />
 
@@ -234,4 +245,4 @@ const getOpacity = () =>{
   ) 
 };
 
-export default Dashboard;
+export default ProfileScreen;

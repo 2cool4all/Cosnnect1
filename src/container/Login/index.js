@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Text, SafeAreaView, ImageBackground,  View, Alert, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard} from 'react-native';
 import {color, globalStyle} from '../../utility';
-import {Logo, InputField, ButtonLaunch } from '../../component';
+import { InputField, ButtonLaunch } from '../../component';
 import { useState } from 'react';
 import { Store } from '../../context/store';
 import { LOADING_START, LOADING_STOP } from '../../context/actions/type';
@@ -108,7 +108,7 @@ const handleFocus = () => {
         />
         <Text style={{ marginBottom:50,marginRight:30, alignSelf:"flex-end", fontSize:15, color:'#320202'}} >Forgot Password?</Text>
         <View style={[globalStyle.sectionCentered]}>
-        <ButtonLaunch title="Login" onPress={()=>navigation.navigate('Login')}/>
+        <ButtonLaunch title="Login" onPress={()=>onLoginPress()}/>
         <Text style={{ fontSize:15, color:'#320202'}}>Don't have an account?
         <Text
         style={{
