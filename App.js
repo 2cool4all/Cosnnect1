@@ -10,5 +10,6 @@ const App = () => (
     <Nav/>
     <Loader/>
     </StoreProvider>
+    
 );
 export default App;

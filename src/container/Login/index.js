@@ -106,7 +106,7 @@ const handleFocus = () => {
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
-        <Text style={{ marginBottom:50,marginRight:30, alignSelf:"flex-end", fontSize:15, color:'#320202'}} >Forgot Password?</Text>
+        <Text style={{ marginBottom:50,marginRight:30, alignSelf:"flex-end", fontSize:15, color:'#320202'}} onPress={()=>navigation.replace('ForgotPass')}>Forgot Password?</Text>
         <View style={[globalStyle.sectionCentered]}>
         <ButtonLaunch title="Login" onPress={()=>onLoginPress()}/>
         <Text style={{ fontSize:15, color:'#320202'}}>Don't have an account?

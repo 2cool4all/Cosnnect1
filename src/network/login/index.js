@@ -8,6 +8,8 @@ const loginRequest = async(email,password) =>{
     }catch (error){
         return error;
     }
+
+   
 };
 
 export default loginRequest;
