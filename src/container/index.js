@@ -7,8 +7,11 @@ import Chat from './Chat';
 import Dashboard1 from './Dashboard1';
 import ProfileScreen from './ProfileScreen';
 import ForgotPassword from './ForgotPass';
+import ChangeName from './ChangeName';
+import ChangePassword from './ChangePassword';
 
 
 
 
-export {Login, SignUp, ProfileScreen, Dashboard, Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword};
+export {Login, SignUp, ProfileScreen, Dashboard, ChangeName,
+        Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword, ChangePassword};

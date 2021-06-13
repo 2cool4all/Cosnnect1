@@ -35,4 +35,3 @@ const Splash = ({navigation}) => {
 
 export default Splash;
 
-//Tangiina mo anne

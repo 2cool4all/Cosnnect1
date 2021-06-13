@@ -30,3 +30,14 @@ export const UpdateUser = async(uuid, imgSource) => {
         return error;
     }
 };
+
+export const UpdateUserName = async(uuid, name) =>{
+    try{
+        return await firebase.database().ref('users/' + uuid)
+        .update({
+            name: name,
+        });
+    } catch (error){
+        return error;
+    }
+}

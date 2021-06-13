@@ -33,8 +33,15 @@ const ProfileScreen = ({navigation}) => {
     profileImg: '',
   });
 
+  const [getEmail, setGetEmail] = useState({
+    email: '',
+  });
+
+  const {email} = getEmail;
+
   const {name, profileImg}= userDetail;
   const [allUsers, setAllUsers] = useState([]);
+
 
 
 useEffect(()=>{
@@ -50,13 +57,14 @@ useEffect(()=>{
       let currentUser = {
         id: '',
         name: '',
-        profileImg: ''
+        profileImg: '',
       };
       dataSnapshot.forEach((child)=>{
         if(uuid === child.val().uuid){
           currentUser.id = uuid;
           currentUser.name = child.val().name;
           currentUser.profileImg=child.val().profileImg;
+
         }
         else{
           users.push({
@@ -83,6 +91,16 @@ useEffect(()=>{
       type: LOADING_STOP,
     });
   }
+
+const user = firebase.auth().currentUser;
+
+  if (user) {
+    return setGetEmail({
+      ...getEmail,
+      email: user.email
+    })
+  }
+
 }, []);
 
   const selectPhotoTapped = () => {
@@ -124,6 +142,7 @@ useEffect(()=>{
 
     })
   }
+
 
 const logout = () => {
   LogOutUser()
@@ -206,14 +225,17 @@ const getOpacity = () =>{
         <Text style={{ color: '#192a56', fontSize: 25 }}>
         <Icon name="user" size={35} color='#440500'/>   {name}</Text>
       <View style={{marginLeft:123, marginTop:10}}>
-        <Icon name="chevron-right" size={30} color='#440500'/>
+        <Icon name="chevron-right" size={30} color='#440500'
+        onPress={()=>{
+          navigation.replace('ChangeName')
+        }}/>
         </View>
       </ListItem>
     </View>
     <View style={{ justifyContent:'center', height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
     <ListItem>
         <Text style={{ color: '#192a56', fontSize: 22 }}>
-        <Icon name="inbox" size={35} color='#440500'/></Text>
+        <Icon name="inbox" size={35} color='#440500'/>  {email} </Text>
       </ListItem>
     </View>
     <View style={{ justifyContent:'center', height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
@@ -221,7 +243,9 @@ const getOpacity = () =>{
         <Text style={{ color: '#192a56', fontSize: 23 }}>
         Change Password</Text>
         <View style={{marginLeft:148, marginTop:10}}>
-        <Icon name="chevron-right" size={30} color='#440500'/>
+        <Icon name="chevron-right" size={30} color='#440500' onPress={()=>{
+          navigation.replace('ChangePass')
+        }}/>
         </View>
       </ListItem>
     </View >
