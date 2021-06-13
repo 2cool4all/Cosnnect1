@@ -200,31 +200,6 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <Header backgroundColor={color.BLACK}>
-        <Left><Text style={{color: color.WHITE}}>Tite</Text></Left>
-        <Body><Text style={{color: color.WHITE}}>Tite</Text></Body>
-        <Right><Text style={{color: color.WHITE}} onPress={()=>Alert.alert(
-          "Logout", "Are you sure you want to logout?",[
-            {
-              text: 'Yes',
-              onPress:()=> logout(), 
-            },
-            {
-              text: 'No'
-            },
-          ],
-          {
-            cancelable:false,
-          },
-        )}>Logout</Text></Right>
-
-        </Header>
-        <Profile
-        img={profileImg}
-        name={name}
-        onEditImgTap={()=>selectPhotoTapped()}
-        onImgTap={()=>imgTap(profileImg, name)}
-        />
         </View>
       }
       renderItem={({item})=>(

@@ -46,7 +46,7 @@ const Login = ({navigation}) => {
         dispatchLoaderAction({
           type:LOADING_STOP,
         });
-        navigation.replace('Dashboard');
+        navigation.replace('Cosnnect');
       })
       .catch((err)=>{
         dispatchLoaderAction({

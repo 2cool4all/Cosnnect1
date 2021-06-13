@@ -1,7 +1,5 @@
 import React from 'react';
-import { useLayoutEffect } from 'react';
 import { View, SafeAreaView, Alert, FlatList, Text} from 'react-native';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import firebase from "../../firebase/config";
 import { LOADING_STOP, LOADING_START } from "../../context/actions/type";
 import { clearAsyncStorage } from '../../asyncStorage';
@@ -15,12 +13,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
-import { Body, Header, Left, Right } from 'native-base';
-import { ListItem } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Tab } from '../../component';
 
-const Dashboard = ({navigation}) => {
+const Dashboard1 = ({navigation}) => {
   const globalState = useContext(Store);
   const {dispatchLoaderAction} = globalState;
   const [getScrollPosition, setScrollPosition] = useState(0);
@@ -51,9 +45,9 @@ useEffect(()=>{
       };
       dataSnapshot.forEach((child)=>{
         if(uuid === child.val().uuid){
-          currentUser.id = uuid;
-          currentUser.name = child.val().name;
-          currentUser.profileImg=child.val().profileImg;
+         currentUser.id = uuid;
+         currentUser.name = child.val().name;
+         currentUser.profileImg=child.val().profileImg;
         }
         else{
           users.push({
@@ -155,14 +149,14 @@ const nameTap = (profileImg, name, guestUserId) => {
       name,
       imgText : name.charAt(0),
       guestUserId,
-      currentUserId : uuid
+     currentUserId : uuid
     })
   }else{
     navigation.navigate('Chat', {
       name,
       img: profileImg,
       guestUserId,
-      currentUserId : uuid
+     currentUserId : uuid
     })
   }
 }
@@ -179,19 +173,12 @@ const getOpacity = () =>{
 }
 
   return(
-  <SafeAreaView style={{flexDirection:'column', backgroundColor:color.WHITE}}>
-      {
-        getScrollPosition > getOpacity() && (
-          <StickyHeader
-          name= {name}
-          img={profileImg}
-          onImgTap={()=>navigation.navigate('Account Settings')}
-          />
-        )
-      }
+  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
+    
 
       <FlatList
       alwaysBounceVertical={false}
+      data={allUsers}
       keyExtractor={(_,index)=>index.toString()}
       onScroll={(event)=>setScrollPosition(event.nativeEvent.contentOffset.y)}
       ListHeaderComponent={
@@ -202,30 +189,21 @@ const getOpacity = () =>{
             : 0,
           }}
         >
-        <View style={{height:85, width:'100%', backgroundColor:'#960A00', justifyContent:'center'}}>
-          <ListItem>
-            <Text style={{color: color.WHITE, fontSize:18,marginBottom:5, fontWeight:"bold", marginRight:67}}>COSnnect</Text>
-            <Profile 
-            img={profileImg}
-            name={name}
-            onEditImgTap={()=>selectPhotoTapped()}
-          onImgTap={()=>navigation.navigate('Account Settings')}/>
-          <Icon name="search" size={25} style={{color: color.WHITE, marginLeft:125}} onPress={()=>navigation.navigate('Account Settings')}/>   
-          </ListItem>
         </View>
-        <View style={{height:50, backgroundColor:color.WHITE, justifyContent:'center'}}>
-        <ListItem>
-        <Tab title="Message"/>
-        <Tab title="Group Chat"/>
-        </ListItem>
-        </View>
+      }
+      renderItem={({item})=>(
+        <ShowUsers
+           name={item.name} img={item.profileImg}
+           onImgTap={()=>imgTap(item.profileImg, item.name)}
+           onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
+           />
 
-
-        </View>
-      }  
+      )}
+      
       />
   </SafeAreaView>
+
   ) 
 };
 
-export default Dashboard;
+export default Dashboard1;

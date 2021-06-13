@@ -19,23 +19,40 @@ const SignUp = ({navigation}) => {
   const globalState = useContext(Store);
   const {dispatchLoaderAction} = globalState;
   const [showLogo, toggleLogo] = useState(true);
+  const [getCourse, setgetCourse]= useState({
+    coourse: "",
+    year: "",
+    section: "",
+  })
   const [credentials, setCredentials]= useState({
-      name: "",
+      Fname: "",
+      Lname: "",
+      DoB: "",
       email: "",
-      course: "",
       password:"",
       confirmPassword: "",
+      isStudent: "",
+      isFaculty: "",
 
   });
 
-  const {name, email, course,  password, confirmPassword} = credentials;
+  const [shouldShow, setshouldShow]= useState(true);
+  const [shouldShow1, setshouldShow1]= useState(false);
+  const [shouldCheck, setshouldCheck] = useState(true);
+  const [shouldCheck1, setshouldCheck1] = useState(false);
 
+  const {Fname, Lname, DoB, email, password, confirmPassword} = credentials;
+  const {coourse, year, section}=getCourse;
   const [date, setDate] = useState();
   const [selectedValue, setSelectedValue] = useState();
 
+  
+
   const onSignUpPress = () =>{
-    if (!name) {
-      alert("Name is required");
+    if (!Fname) {
+      alert("First Name is required");
+    }else if(!Lname){
+      alert('Last name is required');
     }else if(!email){
       alert('Email is required');
     }else if(!password){
@@ -58,7 +75,7 @@ const SignUp = ({navigation}) => {
         }
         let uid = firebase.auth().currentUser.uid;
         let profileImg = "";
-          AddUser(name, email, course, uid, profileImg)
+          AddUser(Fname, Lname,DoB,  coourse, year, section, email, uid, profileImg)
             .then(() => {
               setAsyncStorage(keys.uuid, uid);
               setUniqueValue(uid);
@@ -66,7 +83,7 @@ const SignUp = ({navigation}) => {
                 type: LOADING_STOP,
               });
               alert('Done')
-              navigation.replace("Dashboard");
+              navigation.replace("Cosnnect");
             })
             .catch((err) => {
               dispatchLoaderAction({
@@ -91,6 +108,12 @@ const handleOnChange =(name, value)=> {
   });
 };
 
+const handleOnChange1 =(name, value)=> {
+  setgetCourse({
+    ...getCourse,
+      [name]: value,
+  });
+};
 
 const handleFocus = () => {
   setTimeout(() => {
@@ -124,14 +147,14 @@ const handleBlur = () => {
     style={{marginTop:20,backgroundColor: color.WHITE, opacity:0}}/>
       <View style={[globalStyle.flex2, globalStyle.sectionCenteredLog]}>
       <Text style={{marginLeft:25, fontSize:18, color:'#320202'}}>First Name</Text>
-      <InputField value={name}
-        onChangeText={(text)=>handleOnChange('name',text)}
+      <InputField value={Fname}
+        onChangeText={(text)=>handleOnChange('Fname',text)}
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
          <Text style={{marginLeft:25, fontSize:18, color:'#320202'}}>Last Name</Text>
-      <InputField value={name}
-        onChangeText={(text)=>handleOnChange('name',text)}
+      <InputField value={Lname}
+        onChangeText={(text)=>handleOnChange('Lname',text)}
         onFocus={()=>handleFocus()}
         onBlur={()=>handleBlur()}
         />
@@ -160,45 +183,66 @@ const handleBlur = () => {
           }}
           onDateChange={(date) => {
             setDate(date);
+            handleOnChange("DoB", date)
           }}
         />
+        
 
+        
         <ListItem style={{ marginTop:10,marginLeft:40}}>
-        <CheckBox checked={false} color="green" />
+        <CheckBox checked={shouldCheck} color="green" onPress={()=>{
+          setshouldCheck(!shouldCheck)
+          setshouldCheck1(!shouldCheck1)
+          setshouldShow(!shouldShow)
+          setshouldShow1(!shouldShow1)}}/>
         <Text style={{color:'#320202'}}>  Student</Text>
-        <CheckBox checked={false} color="green"  style={{marginLeft:70}} /><Text style={{color:'#320202'}}>  Faculty</Text>
+        <CheckBox checked={shouldCheck1} color="green"  style={{marginLeft:70}} onPress={()=>{
+          setshouldCheck(!shouldCheck)
+          setshouldCheck1(!shouldCheck1)
+          setshouldShow(!shouldShow)
+          setshouldShow1(!shouldShow1)}}/>
+        <Text style={{color:'#320202'}}>  Faculty</Text>
         </ListItem>
-
-        <ListItem style={{marginTop:20, marginLeft:28}}>
+        {
+          shouldShow ? (
+        <View>
+        <ListItem style={{marginTop:20, marginLeft:28}} >
         <Text style={{fontSize:16, color:'#320202'}}>Course</Text>
         <Text style={{marginLeft:75, fontSize:16, color:'#320202'}}>Year</Text>
         <Text style={{marginLeft:88, fontSize:16, color:'#320202'}}>Section</Text>
         </ListItem>
         <ListItem>
-        <Picker style={{height: 30, width:115,padding:1}}>
+        <Picker style={{height: 30, width:115,padding:1}} onValueChange={(itemValue, itemIndex) =>handleOnChange1( "coourse",itemValue)}>
           <Picker.Item label="BSCS" value="bscs"/>
           <Picker.Item label="BSIS" value="bsis"/>
           <Picker.Item label="BSIT" value="bsit"/>
         </Picker>
-        <Picker style={{height: 30,width:120, marginLeft:8, padding:1}}>
+        <Picker style={{height: 30,width:120, marginLeft:8, padding:1}} onValueChange={(itemValue, itemIndex) =>handleOnChange1( "year",itemValue)}>
           <Picker.Item label="First" value="first"/>
           <Picker.Item label="Second" value="second"/>
           <Picker.Item label="Third" value="third"/>
           <Picker.Item label="Fourth" value="fourth"/>
         </Picker>
-        <Picker style={{height: 30,width:91, marginLeft:5}}>
+        <Picker style={{height: 30,width:91, marginLeft:5}} onValueChange={(itemValue, itemIndex) =>handleOnChange1( "section",itemValue)}>
           <Picker.Item label="A" value="a"/>
           <Picker.Item label="B" value="b"/>
           <Picker.Item label="C" value="c"/>
         </Picker>
         </ListItem>
+        </View>
+          ): null
+        }
 
+
+        {
+          shouldShow1 ? (
         <ListItem>
         <Text style={{marginLeft:10, marginRight:10, fontSize:15, color:'#320202'}}>Verification Code</Text>
         <Verification/>
         <VerifyButton title="Verify" onPress={()=>onSignUpPress()}/>
         </ListItem>
-
+          ): null
+        } 
         <Text style={{marginLeft:25, fontSize:18, color:'#320202'}}>Username</Text>
         <InputField value={email}
         onChangeText={(text)=>handleOnChange('email',text)}

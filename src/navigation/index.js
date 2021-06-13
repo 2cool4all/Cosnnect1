@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {Assets, createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword} from '../container';
+import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword, Dashboard} from '../container';
 import { color } from '../utility';
 import Launch from '../container/Launch';
 import SignUpProf from '../container/SignUpProf';
+import Hometab from '../container/HomeTab';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,8 @@ function NavContainer(){
             <Stack.Navigator initialRouteName="Splash"
             screenOptions={{
                 headerShown:true,
-                headerStyle:{backgroundColor: color.DARK_GRAY},
+                headerTitle:false,
+                headerStyle:{backgroundColor: '#960A00'},
                 headerTintColor:color.WHITE,
                 headerTitleAlign: 'center',
                 headerTitleStyle:{
@@ -51,9 +53,8 @@ function NavContainer(){
                 options={{headerShown: false}}
                 />
                 <Stack.Screen 
-                name="Dashboard" 
-                component={Dashboard}
-                options={{headerShown: false}}
+                name="Cosnnect"
+                component={Hometab}
                 />
                 <Stack.Screen 
                 name="Account Settings" 

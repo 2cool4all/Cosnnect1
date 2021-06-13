@@ -19,7 +19,6 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
               { backgroundColor: color.WHITE},
             ]}
           >
-            <Text style={styles.name}>{name.charAt(0)}</Text>
           </View>
         )}
       </TouchableOpacity>
