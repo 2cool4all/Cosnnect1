@@ -15,9 +15,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
-import { Body, Header, Left, Right } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Dashboard from '../Dashboard';
 import { ListItem, CheckBox } from 'native-base';
 import { TRANSPARENT } from '../../utility/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -172,23 +170,7 @@ const imgTap = (profileImg, name)=>{
 };
 
 
-const nameTap = (profileImg, name, guestUserId) => {
-  if(!profileImg){
-    navigation.navigate('Chat', {
-      name,
-      imgText : name.charAt(0),
-      guestUserId,
-      currentUserId : uuid
-    })
-  }else{
-    navigation.navigate('Chat', {
-      name,
-      img: profileImg,
-      guestUserId,
-      currentUserId : uuid
-    })
-  }
-}
+
 
 
 
@@ -227,6 +209,7 @@ const getOpacity = () =>{
         <Text style={{ color: '#192a56', fontSize: 25 }}>
         <Icon name="user" size={35} color='#440500'/>   {name}</Text>
       <View style={{marginLeft:68, marginTop:10}}>
+        
         <Icon name="chevron-right" size={30} color='#440500'
         onPress={()=>{
           navigation.replace('ChangeName')

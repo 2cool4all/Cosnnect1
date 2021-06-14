@@ -8,6 +8,7 @@ import {
   ActivityIndicator
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
+import firebase from '../../firebase/config'
 import FloatingButton from '../../component/button/FloatingButton';
 import  Separator  from '../../component';
 import { color } from '../../utility';
@@ -17,7 +18,11 @@ export default function Dashboard1({navigation}){
   const [threads, setThreads] = useState([])
   const [loading, setLoading] = useState(true)
 
+
   useEffect(() => {
+
+
+
     const unsubscribe = firestore()
       .collection('MESSAGE_THREADS')
       .orderBy('latestMessage.createdAt', 'desc')
