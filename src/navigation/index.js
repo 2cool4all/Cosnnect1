@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Assets, createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword, ChangeName, ChangePassword, AddRoomScreen} from '../container';
+import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword, ChangeName, ChangePassword, AddRoomScreen, Messages} from '../container';
 import { color } from '../utility';
 import Launch from '../container/Launch';
 import Hometab from '../container/HomeTab';
@@ -59,6 +59,12 @@ function NavContainer(){
                 name="AddRoomScreen"
                 component={AddRoomScreen}
                 options={{headerShown: false}}
+                />
+                <Stack.Screen 
+                name="Messages"
+                component={Messages}
+                options={({route})=>({
+                    headerTitle: route.params.thread.name})}
                 />
                 <Stack.Screen 
                 name="Account Settings" 

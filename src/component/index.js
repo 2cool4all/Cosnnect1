@@ -13,6 +13,8 @@ import Verification from "./verification";
 import VerifyButton from "./button/VerifyButton";
 import Tab from './button/Tab';
 import Avatar from "./image";
+import Separator from "./separator";
+
 
 export {
   Avatar,
@@ -30,4 +32,5 @@ export {
   ChatBox,
   FieldInput,
   Tab,
+  Separator
 };

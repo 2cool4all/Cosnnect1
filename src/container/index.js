@@ -10,9 +10,10 @@ import ForgotPassword from './ForgotPass';
 import ChangeName from './ChangeName';
 import ChangePassword from './ChangePassword';
 import AddRoomScreen from './modalScreen';
+import Messages from './ChatRoom';
 
 
 
 
-export {Login, SignUp, ProfileScreen, Dashboard, ChangeName,
+export {Login, SignUp, ProfileScreen, Dashboard, ChangeName, Messages,
         Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword, ChangePassword, AddRoomScreen};
