@@ -97,9 +97,10 @@ const user = firebase.auth().currentUser;
   if (user) {
     return setGetEmail({
       ...getEmail,
-      email: user.email
+      email: user.email,
     })
   }
+  
 
 }, []);
 
@@ -209,6 +210,7 @@ const getOpacity = () =>{
       flex: 1}}>
   
     <View style={{justifyContent:'center', marginBottom:10}}>
+      
     <ListItem style={{backgroundColor:TRANSPARENT}}>
     <Icon name="long-arrow-left" size={30} color="white" onPress={()=>navigation.navigate('Cosnnect')}/>
     <Text style={{marginLeft:20, color: color.WHITE, fontWeight:'bold', fontSize:20}}> Account Settings</Text>

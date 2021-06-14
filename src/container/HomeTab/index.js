@@ -18,7 +18,6 @@ import firebase from "../../firebase/config";
 import {View, Text} from "react-native"
 
 
-
 const Tab = createMaterialTopTabNavigator();
 
 
@@ -166,6 +165,7 @@ const Hometab=({navigation})=>{
                 <Text style={{color: color.WHITE, fontSize:18,marginBottom:5, fontWeight:"bold", marginRight:67, paddingLeft:15}}>COSnnect</Text>
             ),
         })
+        
     
     }, [navigation]);
 

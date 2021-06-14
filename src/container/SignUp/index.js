@@ -9,7 +9,8 @@ import {setAsyncStorage, keys} from '../../asyncStorage';
 import { setUniqueValue, keyboardVerticalOffset} from '../../utility/constants';
 import firebase from '../../firebase/config';
 import { TRANSPARENT } from '../../utility/colors';
-import { ListItem, CheckBox } from 'native-base';
+import { ListItem } from 'native-base';
+import CheckBox from '@react-native-community/checkbox';
 import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Picker} from '@react-native-picker/picker';
@@ -36,12 +37,12 @@ const SignUp = ({navigation}) => {
 
   });
 
-  const [shouldShow, setshouldShow]= useState(true);
+  const [shouldShow, setshouldShow]= useState(false);
   const [shouldShow1, setshouldShow1]= useState(false);
-  const [shouldCheck, setshouldCheck] = useState(true);
+  const [shouldCheck, setshouldCheck] = useState(false);
   const [shouldCheck1, setshouldCheck1] = useState(false);
 
-  const {Fname, Lname, DoB, email, password, confirmPassword} = credentials;
+  const {Fname, Lname, DoB, email, password, confirmPassword, isStudent, isFaculty} = credentials;
   const {coourse, year, section}=getCourse;
   const [date, setDate] = useState();
   const [selectedValue, setSelectedValue] = useState();
@@ -75,7 +76,7 @@ const SignUp = ({navigation}) => {
         }
         let uid = firebase.auth().currentUser.uid;
         let profileImg = "";
-          AddUser(Fname, Lname,DoB,  coourse, year, section, email, uid, profileImg)
+          AddUser(Fname, Lname,DoB,  coourse, year, section, isStudent, isFaculty, email, uid, profileImg)
             .then(() => {
               setAsyncStorage(keys.uuid, uid);
               setUniqueValue(uid);
@@ -190,17 +191,24 @@ const handleBlur = () => {
 
         
         <ListItem style={{ marginTop:10,marginLeft:40}}>
-        <CheckBox checked={shouldCheck} color="green" onPress={()=>{
-          setshouldCheck(!shouldCheck)
-          setshouldCheck1(!shouldCheck1)
-          setshouldShow(!shouldShow)
-          setshouldShow1(!shouldShow1)}}/>
+        <CheckBox disable={false} value={shouldCheck}  onValueChange={(newVal)=>{
+         setshouldCheck(newVal)
+         setshouldCheck1(!newVal)
+         setshouldShow(newVal)
+         setshouldShow1(!newVal)
+        handleOnChange("isStudent", newVal)
+
+        }}
+          />
         <Text style={{color:'#320202'}}>  Student</Text>
-        <CheckBox checked={shouldCheck1} color="green"  style={{marginLeft:70}} onPress={()=>{
-          setshouldCheck(!shouldCheck)
-          setshouldCheck1(!shouldCheck1)
-          setshouldShow(!shouldShow)
-          setshouldShow1(!shouldShow1)}}/>
+        <CheckBox disable={false} value={shouldCheck1}  style={{marginLeft:70}} onValueChange={(newVal)=>{
+          setshouldCheck1(newVal)
+          setshouldCheck(!newVal)
+          setshouldShow1(newVal)
+          setshouldShow(!newVal)
+          handleOnChange("isFaculty", newVal)
+        }}
+         />
         <Text style={{color:'#320202'}}>  Faculty</Text>
         </ListItem>
         {

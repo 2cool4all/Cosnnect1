@@ -16,6 +16,8 @@ import { useEffect } from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { deviceHeight } from '../../utility/styleHelper/appStyle';
 import { Body, Header, Left, Right } from 'native-base';
+import FloatingButton from '../../component/button/FloatingButton';
+
 
 const Dashboard1 = ({navigation}) => {
   const globalState = useContext(Store);
@@ -25,12 +27,13 @@ const Dashboard1 = ({navigation}) => {
     id: '',
     name: '',
     profileImg: '',
+    
   });
 
   const {name, profileImg}= userDetail;
   const [allUsers, setAllUsers] = useState([]);
 
-
+  const [shouldShow, setshouldShow] = useState(false);
 useEffect(()=>{
   dispatchLoaderAction({
     type: LOADING_START,
@@ -186,7 +189,7 @@ const getOpacity = () =>{
           />
         )
       }
-
+    
       <FlatList
       alwaysBounceVertical={false}
       data={allUsers}
@@ -208,13 +211,13 @@ const getOpacity = () =>{
            onImgTap={()=>imgTap(item.profileImg, item.name)}
            onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
            />
-
       )}
-      
-      />
+    />
+   
+    <FloatingButton onPress={()=>navigation.replace('AddRoomScreen')}/>
+  
+  
   </SafeAreaView>
-
-  ) 
+  )
 };
-
 export default Dashboard1;

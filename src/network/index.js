@@ -4,7 +4,7 @@ import SignUpRequest from './signup';
 import {AddUser, UpdateUser} from './user';
 import {senderMsg, recieverMsg} from './messages';
 import showNotification from './notification';
-import { AddProf } from './professor';
+
 
 
 
@@ -17,5 +17,5 @@ export {
     senderMsg, 
     recieverMsg,
     showNotification,
-    AddProf
+    
 };

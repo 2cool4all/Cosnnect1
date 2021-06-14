@@ -9,9 +9,10 @@ import ProfileScreen from './ProfileScreen';
 import ForgotPassword from './ForgotPass';
 import ChangeName from './ChangeName';
 import ChangePassword from './ChangePassword';
+import AddRoomScreen from './modalScreen';
 
 
 
 
 export {Login, SignUp, ProfileScreen, Dashboard, ChangeName,
-        Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword, ChangePassword};
+        Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword, ChangePassword, AddRoomScreen};

@@ -1,5 +1,5 @@
 import React, {Fragment, useLayoutEffect} from 'react';
-import {View, Text, SafeAreaView, FlatList, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard} from 'react-native';
+import {View, Text, SafeAreaView, FlatList, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard, Alert} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles'
 import { appStyle, color, globalStyle } from '../../utility';
@@ -25,6 +25,7 @@ const Chat = ({route, navigation}) => {
     }, [navigation]);
 
 
+    
 
 
     useEffect(()=>{
@@ -35,16 +36,19 @@ const Chat = ({route, navigation}) => {
             .child(guestUserId)
             .on('value', (dataSnapshot)=>{
                 let msgs = [];
+
                 dataSnapshot.forEach((child)=>{
-                    console.log(child);
+                    console.log(child)
                     msgs.push({
                         sendBy: child.val().message.sender,
                         recievedBy: child.val().message.reciever,
                         msg: child.val().message.msg,
                         img : child.val().message.img,
                     });
+                    
                 });
                 setMessages(msgs.reverse());
+                
             });
         }catch (error){
             alert(error)
@@ -151,7 +155,11 @@ const Chat = ({route, navigation}) => {
                         name="send-circle"
                         color={color.WHITE}
                         size={appStyle.fieldHeight}
-                        onPress={()=>handleSend()}
+                        onPress={()=>{
+                            
+                            handleSend()
+                            Alert.alert('Counter ='+ counter)
+                        }}
                         />
                     </View>
                 </View>

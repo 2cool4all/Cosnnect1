@@ -63,8 +63,6 @@ useEffect(()=>{
         type: LOADING_STOP,
       });
     });
-
-  
   } catch(error){
     dispatchLoaderAction({
       type: LOADING_STOP,

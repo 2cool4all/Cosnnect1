@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {Assets, createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword, ChangeName, ChangePassword} from '../container';
+import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword, ChangeName, ChangePassword, AddRoomScreen} from '../container';
 import { color } from '../utility';
 import Launch from '../container/Launch';
-import SignUpProf from '../container/SignUpProf';
 import Hometab from '../container/HomeTab';
 
 const Stack = createStackNavigator();
@@ -55,6 +54,11 @@ function NavContainer(){
                 <Stack.Screen 
                 name="Cosnnect"
                 component={Hometab}
+                />
+                <Stack.Screen 
+                name="AddRoomScreen"
+                component={AddRoomScreen}
+                options={{headerShown: false}}
                 />
                 <Stack.Screen 
                 name="Account Settings" 
