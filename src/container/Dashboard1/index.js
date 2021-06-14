@@ -177,7 +177,7 @@ const getOpacity = () =>{
 }
 
   return(
-  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}>
+  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
       {
         getScrollPosition > getOpacity() && (
           <StickyHeader

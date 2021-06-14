@@ -16,7 +16,7 @@ function NavContainer(){
             screenOptions={{
                 headerShown:true,
                 headerTitle:false,
-                headerStyle:{backgroundColor: '#960A00'},
+                headerStyle:{backgroundColor: '#960A00', height:75},
                 headerTintColor:color.WHITE,
                 headerTitleAlign: 'center',
                 headerTitleStyle:{

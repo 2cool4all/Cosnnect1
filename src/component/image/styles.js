@@ -74,7 +74,7 @@ export default StyleSheet.create({
   img: getDimensions("img"),
   editImgContainer: getDimensions("editImgContainer"),
   name: {
-    color: appStyle.fieldTextColor,
+    color: color.BLACK,
     fontSize: 50,
     fontWeight: "bold",
   },

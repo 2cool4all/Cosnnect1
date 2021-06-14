@@ -209,8 +209,8 @@ const getOpacity = () =>{
       overflow: "hidden",
       flex: 1}}>
   
-    <View style={{justifyContent:'center', marginBottom:10}}>
-      
+  <View style={{backgroundColor: '#960A00', height:60}}>
+    
     <ListItem style={{backgroundColor:TRANSPARENT}}>
     <Icon name="long-arrow-left" size={30} color="white" onPress={()=>navigation.navigate('Cosnnect')}/>
     <Text style={{marginLeft:20, color: color.WHITE, fontWeight:'bold', fontSize:20}}> Account Settings</Text>
