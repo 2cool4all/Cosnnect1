@@ -159,7 +159,7 @@ const getOpacity = () =>{
     return deviceHeight/6;
   }
 }
-const searchName = useState([])
+const searchName = useState()
   return(
   <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
     
