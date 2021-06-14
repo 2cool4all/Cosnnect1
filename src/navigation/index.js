@@ -5,6 +5,7 @@ import { Login, SignUp, ProfileScreen, Splash, ShowFullImg, Chat, ForgotPassword
 import { color } from '../utility';
 import Launch from '../container/Launch';
 import Hometab from '../container/HomeTab';
+import Search from '../container/Search';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ function NavContainer(){
             screenOptions={{
                 headerShown:true,
                 headerTitle:false,
-                headerStyle:{backgroundColor: '#960A00'},
+                headerStyle:{backgroundColor: '#960A00', height:75},
                 headerTintColor:color.WHITE,
                 headerTitleAlign: 'center',
                 headerTitleStyle:{
@@ -54,6 +55,11 @@ function NavContainer(){
                 <Stack.Screen 
                 name="Cosnnect"
                 component={Hometab}
+                />
+                <Stack.Screen 
+                name="Search" 
+                component={Search}
+                options={{headerShown: false}}
                 />
                 <Stack.Screen 
                 name="AddRoomScreen"

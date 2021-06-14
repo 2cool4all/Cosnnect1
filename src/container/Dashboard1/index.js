@@ -107,5 +107,44 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 2
   }
+<<<<<<< HEAD
+=======
+}
+
+  return(
+  <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.WHITE}]}>
+      {
+        getScrollPosition > getOpacity() && (
+          <StickyHeader
+          name= {name}
+          img={profileImg}
+          onImgTap={()=>imgTap(profileImg, name)}
+          />
+        )
+      }
+
+      <FlatList
+      alwaysBounceVertical={false}
+      data={allUsers}
+      keyExtractor={(_,index)=>index.toString()}
+      onScroll={(event)=>setScrollPosition(event.nativeEvent.contentOffset.y)}
+      ListHeaderComponent={
+        <View
+          style={{
+            opacity : getScrollPosition < getOpacity() 
+            ? (getOpacity() - getScrollPosition) / 100 
+            : 0,
+          }}
+        >
+        </View>
+      }
+      
+      />
+      <FloatingButton onPress={()=>navigation.replace('AddRoomScreen')}/>
+  </SafeAreaView>
+
+  ) 
+};
+>>>>>>> ecd958c1e2e7c48c2e50653ed7f1e288e52ab671
 
 })

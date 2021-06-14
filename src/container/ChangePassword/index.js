@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Alert, Text, View } from 'react-native'
-import { ButtonLaunch, InputField } from '../../component'
+import { ButtonLaunch, ChangeInput } from '../../component'
 import firebase from '../../firebase/config';
 import Firebase from 'firebase';
+import { ListItem } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { color, globalStyle } from '../../utility';
 
 const ChangePassword=({navigation})=> {
 
@@ -47,21 +50,26 @@ const [visible, setVisible] = useState(false);
       };
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Change Name Screen</Text>
-        <Text>Current Password</Text><InputField secureTextEntry={true} onChangeText={(text)=>{
+    <View>
+        <View style={{backgroundColor: '#960A00', height:60, marginBottom:20}}>
+        <ListItem>
+            <Icon name="long-arrow-left" size={30} color="white" onPress={()=>navigation.navigate('Account Settings')}/>
+            <Text style={{marginLeft:20, color: color.WHITE, fontWeight:'bold', fontSize:20}}> Reset Password</Text>
+        </ListItem>
+        </View>
+        <ChangeInput placeholder="Current Password" secureTextEntry={true} onChangeText={(text)=>{
             handleOnChange("passwordHandler", text)
-        }}></InputField>
-        <Text>New Password</Text><InputField secureTextEntry={true} onChangeText={(text)=>{
+        }}></ChangeInput>
+        <ChangeInput placeholder="New Password" secureTextEntry={true} onChangeText={(text)=>{
             handleOnChange("newPass", text)
-        }}></InputField>
-        <Text>Confirm Password</Text><InputField secureTextEntry={true} onChangeText={(text)=>{
+        }}></ChangeInput>
+        <ChangeInput placeholder="Confirm New Password" secureTextEntry={true} onChangeText={(text)=>{
             handleOnChange("confirmNewPass", text)
-        }}></InputField>
-
-
+        }}></ChangeInput>
+        <View style={{marginTop:50, alignItems:'center'}}>
         <ButtonLaunch title="Change Password" onPress={onChangePassword}>
         </ButtonLaunch>
+        </View>
       </View>
     )
   

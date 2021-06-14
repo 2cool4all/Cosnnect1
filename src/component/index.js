@@ -13,11 +13,18 @@ import Verification from "./verification";
 import VerifyButton from "./button/VerifyButton";
 import Tab from './button/Tab';
 import Avatar from "./image";
+<<<<<<< HEAD
 import Separator from "./separator";
 
+=======
+import ChangeInput from "./change";
+import ChatInput from "./chat";
+>>>>>>> ecd958c1e2e7c48c2e50653ed7f1e288e52ab671
 
 export {
   Avatar,
+  ChatInput,
+  ChangeInput,
   VerifyButton,
   ButtonLaunch,
   ButtonLaunchHollow,

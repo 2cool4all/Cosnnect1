@@ -149,7 +149,7 @@ const Hometab=({navigation})=>{
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight: ()=>(
-                <Icon name="search" size={25} style={{color: color.WHITE, marginLeft:125, paddingRight:15}} onPress={()=>navigation.navigate('Account Settings')}/>
+                <Icon name="search" size={25} style={{color: color.WHITE, marginLeft:125, paddingRight:15}} onPress={()=>navigation.navigate('Search')}/>
             ),
             headerTitle:()=>(
               
