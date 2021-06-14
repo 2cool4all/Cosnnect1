@@ -11,9 +11,10 @@ import ChangeName from './ChangeName';
 import ChangePassword from './ChangePassword';
 import AddRoomScreen from './modalScreen';
 import Messages from './ChatRoom';
+import Search from './Search';
 
 
 
 
-export {Login, SignUp, ProfileScreen, Dashboard, ChangeName, Messages,
+export {Login, SignUp, ProfileScreen, Dashboard, ChangeName, Messages,Search,
         Splash, ShowFullImg, Chat, Dashboard1, ForgotPassword, ChangePassword, AddRoomScreen};

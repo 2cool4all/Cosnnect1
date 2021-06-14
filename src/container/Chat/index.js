@@ -157,7 +157,6 @@ const Chat = ({route, navigation}) => {
                         onPress={()=>{
                             
                             handleSend()
-                            Alert.alert('Counter ='+ counter)
                         }}
                         />
                 </View>

@@ -8,6 +8,8 @@ import { LOADING_STOP } from "../../context/actions/type";
 import { uuid} from "../../utility/constants";
 import { Store } from '../../context/store';
 import { clearAsyncStorage } from '../../asyncStorage';
+import auth from '@react-native-firebase/auth'
+
 
 export default function Messages({route, navigation}) {
     useLayoutEffect(()=>{
@@ -29,7 +31,7 @@ export default function Messages({route, navigation}) {
     const {dispatchLoaderAction} = globalState;
     const {name} = userDetail
     const { thread } = route.params
-    const user = firebase.auth().currentUser;
+    const user = auth().currentUser;
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
