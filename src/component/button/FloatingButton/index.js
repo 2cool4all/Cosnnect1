@@ -8,8 +8,8 @@ export default ({onPress}) => (
     <View style={styles.container}>
   <TouchableOpacity  onPress={onPress}>
     <Icon 
-            name="android-messages"    
-            size={45}
+            name="account-multiple-plus"    
+            size={35}
             color= "white"    
         />
   </TouchableOpacity>

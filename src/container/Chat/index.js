@@ -3,7 +3,7 @@ import {View, Text, SafeAreaView, FlatList, KeyboardAvoidingView, TouchableWitho
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles'
 import { appStyle, color, globalStyle } from '../../utility';
-import { ChatBox, InputField } from '../../component';
+import { ChatBox, ChatInput } from '../../component';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import firebase from '../../firebase/config';
@@ -108,11 +108,11 @@ const Chat = ({route, navigation}) => {
       };
 
     return (
-        <SafeAreaView style={[globalStyle.flex1, {backgroundColor: color.BLACK}]}>
+        <SafeAreaView style={[globalStyle.flex1, {backgroundColor: color.WHITE}]}>
             <KeyboardAvoidingView keyboardVerticalOffset={deviceHeight >smallDeviceHeight ?100
             :70}
             behavior={Platform.OS ==='ios'?'padding' : 'height'}
-            style={[globalStyle.flex1, {backgroundColor: color.BLACK}]}
+            style={[globalStyle.flex1, {backgroundColor: '#FAFAFA'}]}
             >
                 <TouchableWithoutFeedback style={[globalStyle.flex1]} onPress={Keyboard.dismiss}>
                     <Fragment>
@@ -137,23 +137,22 @@ const Chat = ({route, navigation}) => {
             {/*Send Message*/}
 
                 <View style={styles.sendMessageContainer}>
-                    <InputField
-                    placeholder="Type Here"
+                <MaterialCommunityIcons
+                        name="camera"
+                        color={color.DARK_GRAY}
+                        size={35}
+                        onPress={()=> handleCamera()}
+                        />
+                    <ChatInput
+                    placeholder="Type Here . . ."
                     numberOfLines={10}
                     InputField={styles.input}
                     value={msgValue}
                     onChangeText={(text)=>handleOnChange(text)}
                     />
-                    <View style={styles.sendBtnContainer}>
-                        <MaterialCommunityIcons
-                        name="camera"
-                        color={color.WHITE}
-                        size={appStyle.fieldHeight}
-                        onPress={()=> handleCamera()}
-                        />
-                        <MaterialCommunityIcons
+                    <MaterialCommunityIcons
                         name="send-circle"
-                        color={color.WHITE}
+                        color={color.DARK_GRAY}
                         size={appStyle.fieldHeight}
                         onPress={()=>{
                             
@@ -161,7 +160,6 @@ const Chat = ({route, navigation}) => {
                             Alert.alert('Counter ='+ counter)
                         }}
                         />
-                    </View>
                 </View>
                 </Fragment>
                 </TouchableWithoutFeedback>

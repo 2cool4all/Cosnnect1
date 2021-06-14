@@ -4,9 +4,9 @@ import { color } from "../../../utility";
 
 export default StyleSheet.create({
     container:{
-        backgroundColor: color.RED,
-        width: 75, 
-        height: 75,
+        backgroundColor: '#960A00',
+        width: 70, 
+        height: 70,
         borderRadius: 35,
         justifyContent: 'center',
         alignItems: 'center',
