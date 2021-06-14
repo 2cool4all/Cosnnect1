@@ -112,7 +112,7 @@ const Chat = ({route, navigation}) => {
             <KeyboardAvoidingView keyboardVerticalOffset={deviceHeight >smallDeviceHeight ?100
             :70}
             behavior={Platform.OS ==='ios'?'padding' : 'height'}
-            style={[globalStyle.flex1, {backgroundColor: '#FAFAFA'}]}
+            style={[globalStyle.flex1, {backgroundColor: '#E8DFDF'}]}
             >
                 <TouchableWithoutFeedback style={[globalStyle.flex1]} onPress={Keyboard.dismiss}>
                     <Fragment>
@@ -137,12 +137,7 @@ const Chat = ({route, navigation}) => {
             {/*Send Message*/}
 
                 <View style={styles.sendMessageContainer}>
-                <MaterialCommunityIcons
-                        name="camera"
-                        color={color.DARK_GRAY}
-                        size={35}
-                        onPress={()=> handleCamera()}
-                        />
+                
                     <ChatInput
                     placeholder="Type Here . . ."
                     numberOfLines={10}

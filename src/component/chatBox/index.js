@@ -23,7 +23,7 @@ const ChatBox = ({ userId, msg, img, onImgTap }) => {
           isCurrentUser && {
             borderTopLeftRadius: 20,
             borderTopRightRadius: 0,
-            backgroundColor: '#545454',
+            backgroundColor: color.WHITE,
           },
         ]}
       >
@@ -39,7 +39,7 @@ const ChatBox = ({ userId, msg, img, onImgTap }) => {
           </CardItem>
         ) : (
           <Text
-            style={[styles.chatTxt, isCurrentUser && { color: color.WHITE }]}
+            style={[styles.chatTxt, isCurrentUser && { color: color.BLACK }]}
           >
             {msg}
           </Text>

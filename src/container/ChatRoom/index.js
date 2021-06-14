@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect, useContext } from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, SystemMessage, Bubble, Time } from 'react-native-gifted-chat'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { color } from '../../utility';
 import firebase from '../../firebase/config';
@@ -9,6 +9,8 @@ import { uuid} from "../../utility/constants";
 import { Store } from '../../context/store';
 import { clearAsyncStorage } from '../../asyncStorage';
 import auth from '@react-native-firebase/auth'
+import { View, Text } from 'react-native';
+import { TRANSPARENT } from '../../utility/colors';
 
 
 export default function Messages({route, navigation}) {
@@ -31,7 +33,7 @@ export default function Messages({route, navigation}) {
     const {dispatchLoaderAction} = globalState;
     const {name} = userDetail
     const { thread } = route.params
-    const user = auth().currentUser;
+    const user = firebase.auth().currentUser;
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
@@ -136,7 +138,34 @@ export default function Messages({route, navigation}) {
         )
         }
 
+        const customSystemMessage = props => {
+          return (
+            <View style={{backgroundColor:TRANSPARENT, alignItems:'center', marginTop:20, marginBottom:20, }}>
+              <Text></Text>
+              <Icon name="lock" color="#9d9d9d" size={30} />
+              <Text style={{color:color.BLACK}}>Your chat is secured.</Text>
+                <Text>Remember to be cautious about what you share with others.</Text>
+                <Text></Text>
+            </View>
+          );
+        }
 
+        const ChatTime = ({ currentMessage, timeFormat }) => {
+          return (
+            <Time
+              currentMessage={currentMessage}
+              timeFormat={timeFormat}
+              timeTextStyle={{
+                left: {
+                  color: color.DARK_GRAY,
+                },
+                right: {
+                  color: color.BLACK,
+                },
+              }}
+            />
+          );
+        };
 
       return (
         <GiftedChat
@@ -145,6 +174,42 @@ export default function Messages({route, navigation}) {
           user={{
             _id: user.uid
           }}
+          renderSystemMessage={props => customSystemMessage(props)}
+          renderTime={props => ChatTime(props)}
+          renderBubble={props => {
+            return (
+              <Bubble
+                {...props}
+                textStyle={{
+                  left: {
+                    color: color.DARK_GRAY,
+                  },
+                  right: {
+                    color: color.BLACK,
+                  },
+                }}
+                wrapperStyle={{
+                  left: {
+                    padding:10,
+                    backgroundColor: '#fafafa',
+                    marginBottom:20,
+                  },
+                  right: {
+                    padding:10,
+                    backgroundColor: '#FFDEDE',
+                  },
+                }}
+              />
+            );
+          }}
+          
+          containerStyle={{
+            backgroundColor: "white",
+            borderTopColor: "#E8E8E8",
+            borderTopWidth: 1,
+            padding: 8,
+          }}
         />
+        
       )
 }

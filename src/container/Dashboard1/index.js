@@ -10,6 +10,7 @@ import {
 import firestore from '@react-native-firebase/firestore'
 import FloatingButton from '../../component/button/FloatingButton';
 import  Separator  from '../../component';
+import { color } from '../../utility';
 
 export default function Dashboard1({navigation}){
 
@@ -48,7 +49,11 @@ export default function Dashboard1({navigation}){
             data={threads}
             keyExtractor={item => item._id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() =>navigation.replace('Messages', {thread:item})}>
+              <TouchableOpacity style={{
+                marginTop:10,
+                marginBottom:10,
+                borderBottomWidth:1,
+                borderBottomColor: '#E1D6D6'}}onPress={() =>navigation.replace('Messages', {thread:item})}>
                 <View style={styles.row}>
                   <View style={styles.content}>
                     <View style={styles.header}>
@@ -75,11 +80,10 @@ export default function Dashboard1({navigation}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dee2eb'
+    backgroundColor: color.WHITE,
   },
   title: {
     marginTop: 20,
-    marginBottom: 30,
     fontSize: 28,
     fontWeight: '500'
   },
@@ -98,14 +102,17 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontWeight: '600',
-    fontSize: 18,
-    color: '#000'
+    fontSize: 25,
+    color: '#000',
+    marginLeft:20
   },
   dateText: {},
   contentText: {
     color: '#949494',
     fontSize: 16,
-    marginTop: 2
+    marginTop: 2,
+    marginLeft:20,
+    marginBottom:15
   }
 
 })

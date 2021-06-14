@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { color, appStyle } from "../../utility";
+import { TRANSPARENT } from "../../utility/colors";
 
 export default StyleSheet.create({
   sendMessageContainer: {
@@ -14,7 +15,7 @@ export default StyleSheet.create({
   },
 
   sendBtnContainer: {
-    backgroundColor: color.DARK_GRAY,
+    backgroundColor: TRANSPARENT,
     alignItems: "center",
     justifyContent: "flex-end",
     flexDirection: "row",
