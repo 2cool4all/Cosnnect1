@@ -206,8 +206,6 @@ const getOpacity = () =>{
     
     <View style={{ justifyContent:'center', marginTop:25, height: 90, borderBottomWidth: 2, borderBottomColor: '#7f8fa6' }}>
     <ListItem>
-        
-      <View style={{marginLeft:123, marginTop:10}}>
         <Icon name="chevron-right" size={30} color='#440500'
         onPress={()=>{
           navigation.replace('ChangeName')
