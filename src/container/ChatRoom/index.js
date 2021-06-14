@@ -31,45 +31,13 @@ export default function Messages({route, navigation}) {
     const {dispatchLoaderAction} = globalState;
     const {name} = userDetail
     const { thread } = route.params
-    const user = auth().currentUser;
+    const user = firebase.auth().currentUser;
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
-      try{
-        firebase
-        .database()
-        .ref('users')
-        .on('value', (dataSnapshot)=>{
-          let users = [];
-          let currentUser = {
-            name: '',
-          };
-          dataSnapshot.forEach((child)=>{
-            if(uuid === child.val().uuid){
-              currentUser.name = child.val().name;
-            }
-            else{
-              users.push({
-                name: child.val().name,
-              });
-            }
-          });
-          setUserDetail(currentUser)
-          setAllUsers(users);
-          dispatchLoaderAction({
-            type: LOADING_STOP,
-          });
-        });
       
-      } catch(error){
-        dispatchLoaderAction({
-          type: LOADING_STOP,
-        });
-        alert(error);
-        dispatchLoaderAction({
-          type: LOADING_STOP,
-        });
-    }
+  
+
         const unsubscribeListener = firestore()
           .collection('MESSAGE_THREADS')
           .doc(thread._id)
@@ -99,7 +67,7 @@ export default function Messages({route, navigation}) {
             setMessages(messages)
           })
       
-        return () => unsubscribeListener()
+        return () => unsubscribeListener();
       }, [])
 
 

@@ -123,27 +123,6 @@ const Hometab=({navigation})=>{
         })
       }
     
-    const imgTap = (profileImg, name)=>{
-        if(!profileImg){
-          navigation.navigate('ShowFullImg', {
-            name, 
-            imgText:name.charAt(0)
-          })
-        }else{
-          navigation.navigate('ShowFullImg', {
-            name, 
-            img:profileImg,
-          });
-        }
-      };
-      const getOpacity = () =>{
-
-        if(deviceHeight<smallDeviceHeight){
-          return deviceHeight/4;
-        }else{
-          return deviceHeight/6;
-        }
-      }
       
     
     useLayoutEffect(()=>{

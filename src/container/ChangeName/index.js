@@ -19,14 +19,20 @@ const ChangeName=({navigation})=> {
     
     const [reset, setReset]= useState({
         id:"",
-        tempName: "",
+        tempFName: "",
+        tempLName: ""
 
     });
     const [allUsers, setAllUsers] = useState([]);
 
-    const {tempName} = reset;
+   
+
+    const {tempFName, tempLName} = reset;
+    var tempName = tempFName + ' ' + tempLName;
 
     useEffect(()=>{
+
+
         dispatchLoaderAction({
           type: LOADING_START,
         });
@@ -67,7 +73,7 @@ const ChangeName=({navigation})=> {
             type: LOADING_STOP,
           });
         }
-
+        
     }, []);
 
 
@@ -91,16 +97,16 @@ const ChangeName=({navigation})=> {
         </ListItem>
         </View>
       <View style={{ justifyContent: 'center'}}>
-        <ChangeInput placeholder="First Name" value={tempName} onChangeText={(text)=>
+        <ChangeInput placeholder="First Name" value={tempFName} onChangeText={(text)=>
         {
-            handleOnChange("tempName", text)
+            handleOnChange("tempFName", text)
         
         }
         }></ChangeInput>
 
-        <ChangeInput placeholder="Last Name" value={tempName}  onChangeText={(text)=>
+        <ChangeInput placeholder="Last Name" value={tempLName}  onChangeText={(text)=>
         {
-            handleOnChange("tempName", text)
+            handleOnChange("tempLName", text)
         
         }
         }></ChangeInput>

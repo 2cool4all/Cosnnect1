@@ -29,6 +29,7 @@ const Chat = ({route, navigation}) => {
 
 
     useEffect(()=>{
+    
         try{
             firebase.database()
             .ref('messages')
@@ -53,6 +54,8 @@ const Chat = ({route, navigation}) => {
         }catch (error){
             alert(error)
         }
+
+    
     },[]);
 
     const handleSend = () => {

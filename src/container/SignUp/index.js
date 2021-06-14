@@ -251,7 +251,7 @@ const handleBlur = () => {
         </ListItem>
           ): null
         } 
-        <Text style={{marginLeft:25, fontSize:18, color:'#320202'}}>Username</Text>
+        <Text style={{marginLeft:25, fontSize:18, color:'#320202'}}>Email Address</Text>
         <InputField value={email}
         onChangeText={(text)=>handleOnChange('email',text)}
         onFocus={()=>handleFocus()}
